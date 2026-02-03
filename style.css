@@ -1,0 +1,939 @@
+/* =========================================
+   1. VARIABLES & RESET (Deep Focus Theme)
+   ========================================= */
+:root {
+    /* Primary Accent: Muted Teal */
+    --primary-blue: #2DD4BF;      
+    /* Hover Color: Periwinkle */
+    --dark-blue: #818CF8;         
+    /* Secondary Accent: Slate */
+    --light-blue: #475569;        
+    /* Backgrounds */
+    --bg-color: #1E293B;          
+    --bg-light: #0F172A;          
+    --white: #334155;             
+    /* Text */
+    --text-dark: #E2E8F0;         
+    --text-light: #94A3B8;        
+    
+    --font-main: 'Poppins', sans-serif;
+    --transition: all 0.3s ease;
+    --shadow-strong: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* INCREASED from 16px to 18px */
+    font-size: 18px; 
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--font-main);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* =========================================
+   2. UTILITIES & BUTTONS
+   ========================================= */
+.container {
+    /* KEY CHANGE: Wider container allows content to spread out */
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-accent { color: var(--primary-blue); }
+.bg-light { background-color: var(--bg-light); }
+.section-padding { padding: 100px 0; } /* Increased padding */
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem; /* Bigger Section Titles */
+    margin-bottom: 70px;
+    color: var(--primary-blue);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px; /* Wider underline */
+    height: 5px;
+    background: var(--dark-blue);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.2rem; /* Bigger subtitle */
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    padding: 14px 35px; /* Bigger buttons */
+    border-radius: 8px;
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 600;
+    display: inline-block;
+    font-size: 1.1rem; /* Bigger button text */
+}
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: var(--bg-color);
+    border: 2px solid var(--primary-blue);
+}
+
+.btn-primary:hover {
+    background: var(--dark-blue);
+    border-color: var(--dark-blue);
+    color: var(--white);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    margin-left: 15px;
+}
+
+.btn-secondary:hover {
+    background: var(--primary-blue);
+    color: var(--bg-color);
+}
+
+/* =========================================
+   3. NAVBAR
+   ========================================= */
+.navbar {
+    background: rgba(30, 41, 59, 0.95);
+    height: 90px; /* Taller Navbar */
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 2rem; /* Bigger Logo */
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.logo span { color: var(--primary-blue); }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links li { margin-left: 40px; }
+
+.nav-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.5rem; /* Bigger links */
+    transition: var(--transition);
+}
+
+.nav-links a:hover { color: var(--primary-blue); }
+
+.menu-toggle { display: none; cursor: pointer; }
+.bar {
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin: 6px auto;
+    transition: var(--transition);
+    background-color: var(--text-dark);
+}
+
+/* =========================================
+   4. HERO SECTION (Cinematic Design)
+   ========================================= */
+.hero {
+    /* KEY ADJUSTMENT: Sets the minimum height */
+    min-height: 85vh; 
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #0F172A 100%);
+    padding-top: 80px;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Replaced blurred image with the solid dark navy color from your picture */
+    background-color: #0F172A; 
+    z-index: 0;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2; /* Puts content on top of the blur */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 180px; /* Space between photo and text */
+    width: 100%;
+}
+
+/* Circular Profile Image */
+.hero-profile img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover; /* Ensures photo doesn't stretch */
+    border-radius: 50%; /* Makes it a circle */
+    border: 5px solid rgba(255, 255, 255, 0.1); /* Subtle glass border */
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6); /* Deep shadow */
+    animation: float 6s ease-in-out infinite; /* Optional floating effect */
+}
+
+/* Text Styling */
+.hero-text {
+    max-width: 700px;
+    color: #fff;
+    text-align: left;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+}
+
+/* Button Container */
+.hero-btns {
+    display: flex;
+    gap: 20px;
+}
+
+/* "Portfolio" Button (Transparent with Border) */
+.btn-outline {
+    padding: 14px 35px;
+    border: 2px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* "Contact" Button (Solid White) */
+.btn-solid {
+    padding: 14px 35px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-solid:hover {
+    background: #ddd; /* Light gray on hover */
+    border-color: #ddd;
+}
+
+/* Floating Animation Keyframes (Optional) */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- RESPONSIVE: Mobile View --- */
+@media (max-width: 900px) {
+    .hero-container {
+        flex-direction: column; /* Stack vertically */
+        text-align: center;
+        gap: 40px;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+    .hero-profile img {
+        width: 250px; /* Smaller image on mobile */
+        height: 250px;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* =========================================
+   5. ABOUT SECTION
+   ========================================= */
+.about-content-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    /* ADJUSTMENT: Reduced gap from 80px to 50px */
+    gap: 50px; 
+    align-items: center;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.about-image-wrapper { text-align: center; }
+
+.profile-pic {
+    width: 100%;
+    max-width: 450px; /* Bigger About Image */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    border: 2px solid var(--light-blue);
+}
+
+.about-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background-color: var(--white);
+    padding: 40px; /* Bigger cards */
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--shadow-strong);
+    border: 1px solid var(--light-blue);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    border-color: var(--primary-blue);
+}
+
+/* 3. Info Cards (Experience/Education) - Icon Size */
+.info-card i {
+    font-size: 3.5rem; /* Larger icon size */
+    color: var(--primary-blue);
+    margin-bottom: 20px; /* Increased margin to match size increase */
+}
+
+/* 3. Info Cards (Experience/Education) - Card Title Size */
+.info-card h4 {
+    font-size: 1.6rem; /* Larger card title */
+    margin-bottom: 12px;
+    color: var(--text-dark);
+}
+
+/* 3. Info Cards (Experience/Education) - Card Detail Text Size */
+.info-card p {
+    font-size: 1.25rem; /* Larger card detail text */
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* 2. About Content and Description Text */
+.about-description {
+    font-size: 1.4rem; /* Enlarged description text */
+    line-height: 1.9;
+}
+
+/* =========================================
+   6. SKILLS SECTION (Card Look)
+   ========================================= */
+.skills-container-box {
+    background-color: #111;
+    border-radius: 30px;
+    padding: 60px; /* More padding */
+    max-width: 1200px; /* Wider box */
+    margin: 0 auto;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.skills-title {
+    text-align: center;
+    font-size: 2.5rem; /* Bigger Title */
+    color: #fff;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    row-gap: 60px;       
+    column-gap: 30px;    
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 25px;           
+    padding-left: 30px;  
+}
+
+.skill-item i {
+    font-size: 4rem; /* BIG Icons */
+    width: 70px;         
+    text-align: center;
+    flex-shrink: 0;      
+}
+
+.skill-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.skill-info h3 {
+    font-size: 1.4rem; /* Bigger Skill Name */
+    font-weight: 700;
+    color: #fff;            
+    margin-bottom: 5px;      
+    line-height: 1.1;
+}
+
+.skill-info p {
+    font-size: 1.1rem; /* Bigger proficiency text */
+    color: #aaa;            
+    margin: 0;
+    font-weight: 400;
+}
+
+/* =========================================
+   7. PROJECTS GRID
+   ========================================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 50px;
+    padding: 20px 0;
+    
+    /* THE FIX: Stops shorter cards from stretching to match the tallest one */
+    align-items: start; 
+}
+
+.project-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-strong);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--light-blue);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover { 
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+}
+
+.project-header {
+    height: 280px; /* Taller image area */
+    overflow: hidden;
+    position: relative;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--light-blue);
+}
+
+.project-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: top;
+    display: block;
+}
+
+.project-content { 
+    padding: 35px; /* More padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-content h3 { 
+    font-size: 1.6rem; /* Bigger Title */
+    font-weight: 700;
+    margin-bottom: 15px; 
+    color: var(--text-dark);
+}
+
+.btn-reveal {
+    background: transparent;
+    border: none;
+    color: var(--primary-blue);
+    font-size: 1rem; /* Bigger text */
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    font-family: var(--font-main);
+    transition: var(--transition);
+}
+
+.btn-reveal:hover { color: var(--text-dark); }
+.btn-reveal i { transition: transform 0.3s ease; }
+.btn-reveal.active i { transform: rotate(180deg); }
+
+.text-content {
+    max-height: 0;           
+    overflow: hidden;       
+    opacity: 0;             
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 0;
+}
+
+.text-content p {
+    color: var(--text-light);
+    font-size: 1.1rem; /* Bigger description */
+    line-height: 1.7;
+}
+
+.text-content.open {
+    max-height: 300px;      
+    opacity: 1;              
+    margin-bottom: 25px;    
+}
+
+.project-links {
+    display: flex;
+    gap: 20px;
+    border-top: 1px solid var(--light-blue);
+    padding-top: 25px;
+    margin-top: auto; 
+}
+
+.project-links a {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.link-btn { color: var(--primary-blue); }
+.link-btn:hover { color: var(--dark-blue); }
+
+/* =========================================
+   8. CERTIFICATES (Flip Animation)
+   ========================================= */
+/* --- ENLARGED CERTIFICATE GRID --- */
+.cert-grid-flip {
+    display: grid;
+    /* INCREASED min-width to 600px (Makes cards very wide) */
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 50px;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    /* WIDE Landscape Ratio */
+    aspect-ratio: 1.4 / 1; 
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+/* --- ENLARGED TEXT ON BACK OF CARD --- */
+.flip-card-back h3 {
+    margin-bottom: 25px;
+    color: var(--primary-blue);
+    font-size: 2.2rem; /* Increased Title Size */
+}
+
+.flip-card-back p {
+    font-size: 1.3rem; /* Increased Text Size */
+    margin-bottom: 15px;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.btn-flip-link {
+    margin-top: 25px;
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid var(--primary-blue);
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 1.2rem; /* Bigger Button Text */
+}
+
+/* =========================================
+   9. UPDATED CONTACT SECTION (Larger Text)
+   ========================================= */
+
+.contact-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.contact-info {
+    max-width: 900px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* "Let's start a conversation" */
+.contact-info h3 {
+    font-size: 3rem;       /* Increased from 2rem */
+    margin-bottom: 30px;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+/* "I'm currently available..." */
+.contact-info > p {
+    color: var(--text-light);
+    margin-bottom: 50px;
+    font-size: 1.5rem;     /* Increased from 1.2rem */
+    line-height: 1.8;
+}
+
+/* Container for Email/Phone/Address */
+.info-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* The small icons (Envelope, Phone, Map) */
+.info-item i {
+    font-size: 2rem;       /* Increased icon size */
+    color: var(--primary-blue);
+    margin-right: 20px;
+    width: auto;
+}
+
+/* The text (nolasco...@gmail.com, etc) */
+.info-item p {
+    margin-bottom: 0;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 1.5rem;     /* Increased from 1.1rem */
+}
+
+/* =========================================
+   10. FOOTER
+   ========================================= */
+footer {
+    background: #020617; 
+    color: var(--text-light);
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid var(--light-blue);
+}
+
+footer p { font-size: 1.1rem; }
+
+.social-links { margin-top: 30px; }
+.social-links a {
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: var(--transition);
+}
+.social-links a:hover { color: var(--primary-blue); }
+
+/* =========================================
+   11. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+@media (max-width: 900px) {
+    .hero-grid, .about-content-grid, .contact-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-text { order: 2; text-align: center; }
+    .hero-image { order: 1; justify-content: center; }
+    
+    .about-image-wrapper { order: 1; }
+    .about-text-content { order: 2; }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    /* Reset font size for mobile so it fits on screen */
+    html { font-size: 16px; } 
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero h1 { font-size: 2.5rem; }
+    .hero-image img { max-width: 300px; }
+}
+
+/* =========================================
+   UPDATED: CERTIFICATE FLIP ANIMATION (Wide Format)
+   ========================================= */
+
+.cert-grid-flip {
+    display: grid;
+    /* Forces wider cards (approx 2 per row on desktop) */
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 50px;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    /* Aspect Ratio set to Standard A4 Landscape (Wider) */
+    aspect-ratio: 1.4 / 1; 
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: var(--shadow-strong);
+    overflow: hidden;
+    /* White border to look like a document frame */
+    border: 4px solid var(--white); 
+}
+
+/* FRONT IMAGE */
+.flip-card-front {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    /* Changed to fill: Forces image to stretch exactly to corners */
+    object-fit: fill; 
+}
+
+/* BACK CONTENT */
+.flip-card-back {
+    background-color: var(--white);
+    color: var(--text-dark);
+    transform: rotateY(180deg);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-blue);
+}
+
+.flip-card-back h3 {
+    margin-bottom: 20px;
+    color: var(--primary-blue);
+    font-size: 1.8rem; /* Bigger Title */
+}
+
+.flip-card-back p {
+    font-size: 1.2rem; /* Bigger Text */
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 768px) {
+    .cert-grid-flip {
+        /* Allow smaller cards on mobile */
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================================
+   CERTIFICATE HOVER EFFECTS
+   ========================================= */
+
+/* 1. Smooth transition settings for the image */
+.flip-card-front img {
+    /* Defines how fast the zoom happens */
+    transition: transform 0.6s cubic-bezier(0.25, 0.45, 0.45, 0.95), filter 0.6s ease;
+}
+
+/* 2. The Hover Animation (Zoom In + Brighten) */
+.flip-card:hover .flip-card-front img {
+    transform: scale(1.1);       /* Zooms the picture in by 10% */
+    filter: brightness(1.15);    /* Makes the picture slightly brighter/glowing */
+}
+
+/* 3. Animate the "Click to Flip" hint text */
+.click-hint {
+    /* Start position: Invisible and slightly lower */
+    opacity: 0;
+    transform: translateY(20px); 
+    transition: all 0.4s ease;
+}
+
+/* When hovering the card, slide the hint up and make it visible */
+.flip-card:hover .click-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* --- UPDATED CONTACT SECTION (Centered) --- */
+
+.contact-info {
+    text-align: center; /* Centers the headings and paragraph */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Forces all child elements to the center */
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the Icon + Text horizontally */
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* Adjust spacing for centered look */
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-right: 15px; /* Reduced margin for tighter center look */
+    width: auto; /* Remove fixed width so it hugs the text */
+}
+/* --- UPDATED CONTACT WRAPPER (Single Column Centered) --- */
+.contact-wrapper {
+    display: flex;            /* Changed from grid to flex */
+    justify-content: center;  /* Centers the content horizontally */
+    align-items: center;
+    width: 100%;
+}
+
+/* Optional: Limit the width so lines don't get too long */
+.contact-info {
+    max-width: 800px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* --- UPDATED SOCIAL ICONS SIZE --- */
+.social-links a {
+    color: var(--text-light);
+    font-size: 3.5rem;  /* Increased size (Adjust this number to make them bigger/smaller) */
+    margin: 0 20px;     /* Spacing between icons */
+    transition: var(--transition);
+    display: inline-block;
+}
+
+/* Optional: Hover Color */
+.social-links a:hover {
+    color: var(--primary-blue);
+    transform: translateY(-5px); /* Little hop on hover */
+}
+
+/* --- REVEAL ON SCROLL ANIMATION --- */
+
+/* The initial state (Hidden and shifted down) */
+.reveal {
+    position: relative;
+    transform: translateY(60px);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth slide effect */
+}
+
+/* The state when the element is visible */
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Optional: Stagger the reveal of cards so they don't all pop up at once */
+.reveal-delay-1 { transition-delay: 0.2s; }
+.reveal-delay-2 { transition-delay: 0.4s; }
